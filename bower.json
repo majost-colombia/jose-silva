@@ -1,0 +1,29 @@
+{
+  "name": "Prueba Jose Silva 1.093.743.579",
+  "description": "Prueba de conocimientos técnicos",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.7.0",
+    "remodal": "^1.1.0"
+  },
+  "dependencies": {
+    "datatables.net-colreorder-dt": "^1.4.1",
+    "components-font-awesome": "^5.0.6"
+  }
+}

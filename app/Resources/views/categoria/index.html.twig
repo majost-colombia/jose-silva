@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de categorías</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Activo</th>
+                <th>Accciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorium in categorias %}
+            <tr>
+                <td><a href="{{ path('categoria_show', { 'id': categorium.id }) }}">{{ categorium.id }}</a></td>
+                <td>{{ categorium.codigo }}</td>
+                <td>{{ categorium.nombre }}</td>
+                <td>{{ categorium.descripcion }}</td>
+                <td>{% if categorium.activo %}Sí{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('categoria_show', { 'id': categorium.id }) }}" class="btn btn-success">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('categoria_edit', { 'id': categorium.id }) }}" class="btn btn-default">Editar</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('categoria_delete', { 'id': categorium.id }) }}" class="btn btn-danger">Eliminar</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('categoria_new') }}" class="btn btn-default">Crear Categoría</a>
+        </li>
+    </ul>
+{% endblock %}

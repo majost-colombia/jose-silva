@@ -1,0 +1,72 @@
+{% set ruta = app.request.get('_route') %}
+{% set params = app.request.attributes.get('_route_params')  %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Prueba Técnica{% endblock %}</title>
+        <link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap-theme.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/datatables.net-colreorder-dt/css/colReorder.dataTables.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.min.css') }}" type="text/css" rel="stylesheet">
+        {% block stylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Alternar</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">Optime Consulting</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li{% if ruta == 'homepage' %} class="active"{% endif %}><a href="{{ path('homepage') }}">Home <span class="sr-only">(activo)</span></a></li>
+                            <li class="dropdown{% if ruta matches '/^categoria.*/' %} active{% endif %}">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('categoria_index') }}">Listado</a></li>
+                                    <li><a href="{{ path('categoria_new') }}">Nueva</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown{% if ruta matches '/^producto.*/' %} active{% endif %}">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Productos <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('producto_index') }}">Listado</a></li>
+                                    <li><a href="{{ path('producto_new') }}">Nuevo</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            {% block body %}
+
+            {% endblock %}
+        </div>
+        {% block javascripts %}
+        <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}" type="application/javascript"></script>
+        <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.js') }}" type="application/javascript"></script>
+        <script src="{{ asset('assets/vendor/bootstrap/dist/js/npm.js') }}" type="application/javascript"></script>
+        <script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}" type="application/javascript"></script>
+        <script src="{{ asset('assets/vendor/datatables.net-colreorder/js/dataTables.colReorder.min.js') }}" type="application/javascript"></script>
+        <script type="application/javascript">
+            $(document).ready( function () {
+                $('table').DataTable();
+            } );
+        </script>
+        {% endblock %}
+    </body>
+</html>
